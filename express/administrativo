@@ -1,1 +1,8 @@
+clase administrativo
+  publico Cadena Area_trabajo
 
+publico vacio asignarArea_trabajo(Cadena Area_trabajo)
+  este.Area_trabajo = Area_trabajo
+
+publico obtenerArea_trabajo()
+  retornar "El area de trabajo", Area_trabajo
