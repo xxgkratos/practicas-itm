@@ -79,27 +79,45 @@ publico vacio actualizarRegistro(Archivo arch, Cadena cedula)
     pedir el dato a actualizar (nombre o telefono) y actualizar el objeto en la posición que se 
     encuentra en el vector
       boolean sw = verdadero
+      entero elemento = 0
       para(i=0; i < vecC.tamaño; i++)haga
        si(cedula == vecC[i].obtenerCedula())entonces
           imprimir("usuario existente")
           boolean sw = falso
+          elemento = i
           romper
        finSi
       finPara
       si(sw == falso) entonces
          imprimir("ingrese 1, para cambiar nombre. ingrese 2 para cambiar telefono")
          entero op = leer op
+         cadena nombre-actual = vecC[elemento].obtenerNombre
+         cadena telefono-actual = vecC[elemento].obtenerTelefono
          si(op == 1) entonces
             imprimir("ingrese el nombre: ")
             cadena nuevo-nombre = leer nuevo-nombre
-            vecC.obtenerNombre
+            vecC[elemento] = nuevo cliente(cedula,nuevo-nombtre, telefono-actual)
          sino si(op == 2) entonces
+            imprimir("ingrese el nuevo telefono")
+            nuevo-telefono =  leer nuevo-telefono
+            vecC[elemento] = nuevo cliente(cedula,nombre-actual, 
          sino{
             imprimir("opcion no valida")
          }
       sino{
          imprimir("El usuario no existe")
       }
+      Cliente objC
+       objArchCopy.cerrarModoLectura()
+       objArchCopy.eliminaArchivo("DatosEstudiante.txt")
+       para (entero i = 0; i < vecE.longitud; i++) hacer
+         objArchCopy.abrirModoEscritura("DatosEstudiante.txt")
+         objC = vecC[i]
+         Cadena texto = ""
+         texto = objE.estructuraRegistro()
+         objArchCopy.escribir(texto)
+         objArchCopy.cerrarModoEscritura()
+    FinPara
  6.Eliminar el archivo
  7. abrir archivo en modo escritura
  8. volver a crear el archivo con la información que se encuentra en el vector
