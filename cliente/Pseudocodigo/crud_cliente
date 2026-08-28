@@ -65,14 +65,41 @@ finMetodo
 
 publico vacio actualizarRegistro(Archivo arch, Cadena cedula)
  1. abrimos archivo de clientes en modo lectura
+   arch.abrirModoLectura("DatosClientes.txt")
  2. recorrer el archivo para contar los registros del archivo
+   entero cl = arch.contadorLineas("Datosclientes.txt")
  3. crear vector tipo Cliente que su tamaño sea de acuerdo a la cantidad registros encontrados
+   Cliente vecC []= nuevo CLiente[cl]
  4. asignarle al vector los registros identificados en el archivo y cerrar archivo en modo lectura
+   vecC= arch.leerClientes
+   arch.cerrarModoLectura
  5. recorrer el vector para encontrar la cedula y realizar la actualización. para eso se
     necesita una estructura ciclica y dentro de la estrcutura se compara las cedulas y si 
     se encuentra un match entre la cedula consultada con la registrada en el vector, se debería
     pedir el dato a actualizar (nombre o telefono) y actualizar el objeto en la posición que se 
-    encuentra en el vector    
+    encuentra en el vector
+      boolean sw = verdadero
+      para(i=0; i < vecC.tamaño; i++)haga
+       si(cedula == vecC[i].obtenerCedula())entonces
+          imprimir("usuario existente")
+          boolean sw = falso
+          romper
+       finSi
+      finPara
+      si(sw == falso) entonces
+         imprimir("ingrese 1, para cambiar nombre. ingrese 2 para cambiar telefono")
+         entero op = leer op
+         si(op == 1) entonces
+            imprimir("ingrese el nombre: ")
+            cadena nuevo-nombre = leer nuevo-nombre
+            vecC.obtenerNombre
+         sino si(op == 2) entonces
+         sino{
+            imprimir("opcion no valida")
+         }
+      sino{
+         imprimir("El usuario no existe")
+      }
  6.Eliminar el archivo
  7. abrir archivo en modo escritura
  8. volver a crear el archivo con la información que se encuentra en el vector
