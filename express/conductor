@@ -1,0 +1,28 @@
+clase conductor
+  publico cadena licencia
+  publico cadena categoria
+
+publico conductor (cadena licencia, cadena categoria)
+  este.licencia = licencia
+  este.categoria = categoria
+finmetodo
+
+publico vacio asignarLicencia(cadena licencia)
+  este.licencia = licencia
+finmetodo
+
+publico cadena obtenerLicencia()
+  retornar licencia
+finmetodo
+
+publico vacio asignarCategoria(cadena categoria)
+  este.categoria = categoria
+finmetodo
+
+publico cadena obtenerCategoria()
+  retornar categoria
+finmetodo
+
+publico cadena retornarconductor()
+  retornar "conductor: {Licencia: ",Licencia, "categoria: ", categoria,"}"
+finmetodo
