@@ -40,7 +40,7 @@ public class ArchivoEditorial {
             if(tamano > 0){
                 CrudEditorial crudEditorial = new CrudEditorial();
                 boolean existe = crudEditorial.LeerEditorialbooleano(codigoEditorial);
-                if (existe) {
+                if (existe==true) {
                     return true;
                 }
             }

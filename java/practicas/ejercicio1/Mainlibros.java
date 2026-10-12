@@ -55,6 +55,10 @@ public class Mainlibros {
                             CrudLibros crudLibros2 = new CrudLibros();
                             crudLibros2.ListarLibros();
                             continue;
+                        
+                        case 6: 
+                            System.out.println("Saliendo del sistema. ");
+                            return;
 
                         default:
                             System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
@@ -68,7 +72,8 @@ public class Mainlibros {
                     System.out.println("2. Buscar Editorial. ");
                     System.out.println("3. Eliminar Editorial. ");
                     System.out.println("4. Modificar Editorial. ");
-                    System.out.println("5. Salir. ");
+                    System.out.println("5. Imprimir todas las editoriales. ");
+                    System.out.println("6. Salir. ");
                     int op2 =  manjErrores.leerEntero();
                     switch (op2) {
                         case 1:
@@ -91,7 +96,10 @@ public class Mainlibros {
                                 System.out.println("Aun no existen editoriales en el sistema."); 
                             }
                             continue;
-
+                        
+                        case 6:
+                            System.out.println("Saliendo del sistema. ");
+                            return; 
                         default:
                             System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
                             continue;
@@ -110,6 +118,7 @@ public class Mainlibros {
 class LectorLibros{
     ManejoErrores manjErrores = new ManejoErrores();
     public Libros pedirLibro() {
+
         ArchivoLibros archivo = new ArchivoLibros();
         int codigo = 0;
         boolean manejocodigo = false; 
@@ -143,8 +152,52 @@ class LectorLibros{
         System.out.println("Ingrese el código de la editorial del libro: ");
         int codEditorial = manjErrores.leerEntero();
 
-        
+
+        ManejoEditorial manjEditorial = new ManejoEditorial();
+        codEditorial = manjEditorial.manejoEditorial(codEditorial);
+
         return new Libros(codigo, titulo, anoPublicacion, genero, numPaginas, precio, codEditorial);
+    }
+        
+}
+
+class ManejoEditorial {
+    
+    public int manejoEditorial(int codigoEditorial) {
+        ArchivoEditorial archivoEditorial = new ArchivoEditorial();
+
+        if (archivoEditorial.ExisteEditorial(codigoEditorial)) {
+            System.out.println("Editorial confirmada y vinculada correctamente. ");
+            return codigoEditorial;
+        }
+
+        System.out.println("El código de editorial " + codigoEditorial + " no existe.");
+        System.out.println("1. Ingresar un código diferente");
+        System.out.println("2. Registrar una nueva editorial con este código");
+        
+        ManejoErrores manjErrores = new ManejoErrores();
+        int opcion = manjErrores.leerEntero();
+
+        if (opcion == 1) {
+            System.out.println("Ingrese el nuevo código de editorial: ");
+            int nuevoCodigo = manjErrores.leerEntero();
+            // LLAMADA RECURSIVA con el nuevo código
+            return manejoEditorial(nuevoCodigo); 
+            
+        } else if (opcion == 2) {
+            // Creamos y guardamos la nueva editorial
+            LeerEditorial leerEditorial = new LeerEditorial();
+            Editorial nuevaEditorial = leerEditorial.pedirEditorial();
+            
+            archivoEditorial.guardarEnCSV(nuevaEditorial);
+            
+            // LLAMADA RECURSIVA con el código de la editorial recién creada
+            return manejoEditorial(nuevaEditorial.getCodigoEditorial());
+        }
+
+        // Si ingresa una opción inválida, reintentamos con el mismo código
+        System.out.println("Opción inválida, intente de nuevo.");
+        return manejoEditorial(codigoEditorial);
     }
 }
 
