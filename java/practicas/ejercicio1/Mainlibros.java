@@ -31,7 +31,7 @@ public class Mainlibros {
 
                         case 2:
                             System.out.println("Ingrese el nombre del libro que desea consultar: ");
-                            String nombreLibro = sc.nextLine();
+                            String nombreLibro = manjErrores.leerTexto();
                             ArchivoLibros archivoLibros = new ArchivoLibros();
                             Libros existe = archivoLibros.existeLibroTitulo(nombreLibro); 
                             if (existe != null) {
@@ -40,7 +40,17 @@ public class Mainlibros {
                                 System.out.println("Aun no existen libros en el sistema."); 
                             }
                             continue;
-                    
+                        
+                        case 3:
+                            System.out.println("Ingrese el nombre del libro que quiere eliminar. ");
+                            String nombre_titulo =  manjErrores.leerTexto();
+                            CrudLibros crudLibros =  new CrudLibros();
+
+                            if(crudLibros.DeleteLibro(nombre_titulo) != null){
+                                
+                            }
+
+                            continue;
                         default:
                             System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
                             continue;
@@ -104,7 +114,7 @@ class LectorLibros{
             codigo = manjErrores.leerEntero();
 
             if (archivo.existeLibro(codigo) == false) {
-                manejocodigo = true; // Código válido, salimos del bucle 🟢
+                manejocodigo = true; 
             } else {
                 System.out.println("El libro con código " + codigo + " ya existe en el sistema.");
             }

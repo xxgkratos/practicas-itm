@@ -15,9 +15,32 @@ public class Nodo {
         this.antNodo = null;
     }
 
+    public Nodo(Object dato, Nodo sigNodo, Nodo antNodo){
+        this.dato = dato;
+        this.antNodo =  antNodo;
+        this.sigNodo = sigNodo;
+    }
+
+
 
     public void asignarSiguiente(Nodo sigNodo){
         this.sigNodo =  sigNodo;
     }
 
+    public Nodo obtenerSig() {
+        return sigNodo;
+    }
+
+    public Nodo obtenerAnt() {
+        return antNodo;
+    }
+
+    public void asignarAnt(Nodo antNodo) {
+        this.antNodo = antNodo;
+    }
+
+    public Object obtenerDato() {
+        return dato;
+    }
+    
 }

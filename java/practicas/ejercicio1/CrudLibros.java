@@ -59,9 +59,37 @@ public class CrudLibros {
 
     }
 
-    public boolean DeleteLibro(String nombreLibro){
+    public String  DeleteLibro(String nombreLibro){
+        
+        ManejoListas lista =  new ManejoListas();
+        ArchivoLibros archivo =  new ArchivoLibros();
+        int numeroLineas =  archivo.contadorLineas(archivo.ruta);
+        archivo.abrirModoLectura();
+        String mensaje =  "El libro no pudo ser eliminado ";
+        if(archivo.existeLibroTitulo(nombreLibro)!= null){
 
+            for(int i=0; i < numeroLineas ; i++){
+            String linea = archivo.leerLinea();
+            String[] datos = linea.split(",");
+            int cod = Integer.parseInt(datos[0]);
+            String titulo = datos[1];
+            int anoPublicacion = Integer.parseInt(datos[2]);
+            String genero = datos[3];
+            int numPaginas = Integer.parseInt(datos[4]);
+            double precio = Double.parseDouble(datos[5]);
+            int codEditorial = Integer.parseInt(datos[6]);
+            Libros libros =  new Libros(cod, titulo, anoPublicacion, genero, numPaginas, precio, codEditorial);
+            lista.insertarNodoPorFinal(libros);
+            }
 
-        return true;
+            if(lista.eliminarLibroTitulo(nombreLibro) == true){
+                mensaje = "El libro fue eliminado con exito";
+                return mensaje;
+            }else{
+                return mensaje;
+            }
+        }else{
+            return mensaje;
+        }
     }
 }

@@ -33,7 +33,7 @@ public class ArchivoLibros {
         }
     }
 
-    public boolean existeLibro(int codigo){
+    public boolean existeLibro(int codigo){ //tiene que devolver un booleando
         ArchivoLibros archivo = new ArchivoLibros();
         int tamano = archivo.contadorLineas(ruta);
         try{
@@ -54,7 +54,7 @@ public class ArchivoLibros {
         return true;
     }
 
-    public Libros existeLibroTitulo(String nombreLibro){
+    public Libros existeLibroTitulo(String nombreLibro){//tiene que devolver un objeto
         ArchivoLibros archivo = new ArchivoLibros();
         int tamano = archivo.contadorLineas(ruta);
         try{
