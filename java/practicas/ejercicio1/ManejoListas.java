@@ -5,6 +5,10 @@ public class ManejoListas {
         this.start = null;
         this.end = null;
     }
+    
+    public Nodo  getStart(){
+        return start;
+    }
 
     public void insertarNodoPorFinal(Object info) {
         Nodo nuevo = new Nodo(info); // 1. Creamos el nodo nuevo

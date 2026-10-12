@@ -13,12 +13,13 @@ public class Mainlibros {
             switch(opcion){
                 case 1:
                     // Implementar lógica para opciones de libros
-                    System.out.println("Opciones de libros seleccionadas.");
+                    System.out.println("\nOpciones de libros seleccionadas.");
                     System.out.println("1. Ingresar libro. ");
                     System.out.println("2. Buscar libro. ");
                     System.out.println("3. Eliminar libro. ");
                     System.out.println("4. Modificar libro. ");
-                    System.out.println("5. Salir. ");
+                    System.out.println("5. Imprimir todos los libros. ");
+                    System.out.println("6. Salir. ");
                     int op = manjErrores.leerEntero();
                     switch (op) {
                         case 1:
@@ -46,11 +47,15 @@ public class Mainlibros {
                             String nombre_titulo =  manjErrores.leerTexto();
                             CrudLibros crudLibros =  new CrudLibros();
 
-                            if(crudLibros.DeleteLibro(nombre_titulo) != null){
-                                
-                            }
-
+                            String mensaje= crudLibros.DeleteLibro(nombre_titulo);
+                            System.out.println(mensaje);
                             continue;
+                        
+                        case 5:
+                            CrudLibros crudLibros2 = new CrudLibros();
+                            crudLibros2.ListarLibros();
+                            continue;
+
                         default:
                             System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
                             continue;
@@ -58,7 +63,7 @@ public class Mainlibros {
 
                 case 2:
                     // Implementar lógica para opciones de editoriales
-                    System.out.println("Opciones de editoriales seleccionadas.");
+                    System.out.println("\nOpciones de editoriales seleccionadas.");
                     System.out.println("1. Ingresar Editorial. ");
                     System.out.println("2. Buscar Editorial. ");
                     System.out.println("3. Eliminar Editorial. ");

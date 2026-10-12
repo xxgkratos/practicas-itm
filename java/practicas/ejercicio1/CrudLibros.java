@@ -28,6 +28,42 @@ public class CrudLibros {
         return null;
     }
 
+    // En CrudLibros.java
+
+    public void ListarLibros() {
+        ArchivoLibros archivo = new ArchivoLibros();
+        int numeroLineas = archivo.contadorLineas(archivo.ruta);
+
+        if (numeroLineas == 0) {
+            System.out.println("No hay libros registrados en el archivo CSV.");
+            return;
+        }
+
+        ManejoListas lista = new ManejoListas();
+        archivo.abrirModoLectura();
+
+        for (int i = 0; i < numeroLineas; i++) {
+            String linea = archivo.leerLinea();
+            String[] datos = linea.split(",");
+            int cod = Integer.parseInt(datos[0]);
+            String titulo = datos[1];
+            int anoPublicacion = Integer.parseInt(datos[2]);
+            String genero = datos[3];
+            int numPaginas = Integer.parseInt(datos[4]);
+            double precio = Double.parseDouble(datos[5]);
+            int codEditorial = Integer.parseInt(datos[6]);
+
+            Libros libro = new Libros(cod, titulo, anoPublicacion, genero, numPaginas, precio, codEditorial);
+            lista.insertarNodoPorFinal(libro);
+        }
+        
+        archivo.cerrarModoLectura();
+
+        // La lista se encarga de imprimir todos sus nodos
+        System.out.println("\n--- LISTA DE LIBROS REGISTRADOS ---");
+        lista.listarNodos(); 
+    }
+
     public boolean LeerLibroCodigo(int codigo){
         ArchivoLibros archivoLibros = new ArchivoLibros();
         archivoLibros.abrirModoLectura();
@@ -59,7 +95,7 @@ public class CrudLibros {
 
     }
 
-    public String  DeleteLibro(String nombreLibro){
+    public String DeleteLibro(String nombreLibro){
         
         ManejoListas lista =  new ManejoListas();
         ArchivoLibros archivo =  new ArchivoLibros();
@@ -83,6 +119,7 @@ public class CrudLibros {
             }
 
             if(lista.eliminarLibroTitulo(nombreLibro) == true){
+                archivo.reescribirCSVDesdeLista(lista);
                 mensaje = "El libro fue eliminado con exito";
                 return mensaje;
             }else{

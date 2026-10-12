@@ -32,26 +32,31 @@ public class ArchivoLibros {
             System.out.println("Error al guardar en el archivo: " + e.getMessage());
         }
     }
+    public void reescribirCSVDesdeLista(ManejoListas lista) {
+    // Pasar 'false' hace que el archivo se limpie/sobrescriba por completo
+    try(FileWriter fw = new FileWriter(this.ruta, false); 
+        PrintWriter pw = new PrintWriter(fw)) {
+
+        Nodo actual = lista.getStart(); // Necesitamos acceder al inicio de la lista
+        
+        while (actual != null) {
+            Libros libro = (Libros) actual.obtenerDato();
+            pw.println(libro.toString()); // Escribe la línea formato CSV
+            actual = actual.obtenerSig();
+        }
+        
+    } catch (IOException e) {
+        System.out.println("Error al reescribir el archivo: " + e.getMessage());
+    }
+    }
 
     public boolean existeLibro(int codigo){ //tiene que devolver un booleando
-        ArchivoLibros archivo = new ArchivoLibros();
-        int tamano = archivo.contadorLineas(ruta);
         try{
-        if(tamano > 0){
-
-            CrudLibros crudLibros = new CrudLibros();
-            boolean libroConsultado = crudLibros.LeerLibroCodigo(codigo);
-            if (libroConsultado == true) {
-                return true;
-            }
-        }else if(tamano == 0){
-            return false;
-        }
+            return new CrudLibros().LeerLibroCodigo(codigo);
         }catch(Exception e){
             System.out.println("Error al verificar la existencia del libro: " + e.getMessage());
             return false;
         }
-        return true;
     }
 
     public Libros existeLibroTitulo(String nombreLibro){//tiene que devolver un objeto
