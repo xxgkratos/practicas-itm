@@ -46,6 +46,7 @@ public class CrudEditorial {
     public boolean eliminarEditorialCodigo(int codigoEditorialBuscar){
 
         ArchivoEditorial archivoEditorial =  new ArchivoEditorial();
+        archivoEditorial.abrirModoLectura();
         if(archivoEditorial.ExisteEditorial(codigoEditorialBuscar) == true){
             int numeroLineas = archivoEditorial.contadorLineas(archivoEditorial.ruta);
             archivoEditorial.abrirModoLectura();
@@ -60,14 +61,44 @@ public class CrudEditorial {
                 listaEditorial.insertarNodoPorFinal(editorial);
             }
 
-            if(archivoEditorial.eliminarGuardarCSV(listaEditorial)== true){
+            if(listaEditorial.eliminarEditorialCodigo(codigoEditorialBuscar) == true){
+                archivoEditorial.reescribirGuardarCSV(listaEditorial);
                 return true;
+
             }else{
                 return false;
             }
+        }
+        archivoEditorial.cerrarModoLectura();
+        return false;
+    }
 
+    public void ListarEditorial(){
+        ArchivoEditorial archivo = new ArchivoEditorial();
+        int numeroLineas = archivo.contadorLineas(archivo.ruta);
+
+        if (numeroLineas == 0) {
+            System.out.println("No hay libros registrados en el archivo CSV.");
+            return;
         }
 
-        return false;
+        ManejoListas lista = new ManejoListas();
+        archivo.abrirModoLectura();
+
+        for (int i = 0; i < numeroLineas; i++) {
+            String linea = archivo.leerLinea();
+            String[] datos = linea.split(",");
+            int cod = Integer.parseInt(datos[0]);
+            String titulo = datos[1];
+
+            Editorial editorial = new Editorial(cod, titulo);
+            lista.insertarNodoPorFinal(editorial);
+        }
+        
+        archivo.cerrarModoLectura();
+
+        // La lista se encarga de imprimir todos sus nodos
+        System.out.println("\n--- LISTA DE LIBROS REGISTRADOS ---");
+        lista.listarNodos();
     }
 }

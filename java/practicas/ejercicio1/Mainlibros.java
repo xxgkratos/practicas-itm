@@ -107,6 +107,10 @@ public class Mainlibros {
                             }
 
                             continue;
+                        case 5:
+                            CrudEditorial crudEditorial2 = new CrudEditorial();
+                            crudEditorial2.ListarEditorial();
+                            continue;
                         case 6:
                             System.out.println("Saliendo del sistema. ");
                             return; 
