@@ -165,4 +165,22 @@ public class ArchivoEditorial {
         }
         return linea;
     }
+
+    public boolean eliminarGuardarCSV(ManejoListas lista) {
+        try(FileWriter fw = new FileWriter(this.ruta , false);
+            PrintWriter bw =  new PrintWriter(fw) ){
+                
+                Nodo actual = lista.getStart();
+                
+                while(actual != null){
+                    Editorial editorialGuardar = (Editorial)  actual.obtenerDato();
+                    bw.println(editorialGuardar.toString());
+                    actual = actual.obtenerSig();
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Error al reescribir el archivo: " + e.getMessage());
+        }
+        return false;
+    }
 }

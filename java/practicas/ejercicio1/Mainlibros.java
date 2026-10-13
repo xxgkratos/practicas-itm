@@ -96,7 +96,17 @@ public class Mainlibros {
                                 System.out.println("Aun no existen editoriales en el sistema."); 
                             }
                             continue;
-                        
+                        case 3:
+                            System.out.println("Ingrese el codigo de la editorial que quiere eliminar. ");
+                            int codigoEditorialBuscar =  manjErrores.leerEntero();
+                            CrudEditorial eliminarEditorial = new CrudEditorial();  
+                            if(eliminarEditorial.eliminarEditorialCodigo(codigoEditorialBuscar)==true){
+                                System.out.println("la editorial de codigo: "+codigoEditorialBuscar+" ha sido eliminado.");
+                            }else{
+                                System.out.println("El codigo de la editorial no se pudo eliminar, vuelva a intertarlo. ");
+                            }
+
+                            continue;
                         case 6:
                             System.out.println("Saliendo del sistema. ");
                             return; 

@@ -110,4 +110,45 @@ public class ManejoListas {
 
     return false; // No se encontró el libro en la lista
     }
+
+
+    public boolean eliminarEditorialCodigo(int codigoEliminarEditorial){
+        if(isEmpty()){
+            return false;
+        }
+
+        Nodo actual =  start;
+        Nodo anterior =  null;
+
+        while(actual != null){
+            Editorial editorial =  (Editorial) actual.obtenerDato();
+        
+            if (editorial.getCodigoEditorial() == codigoEliminarEditorial) {
+                
+                // CASO A: El libro a eliminar es el PRIMERO de la lista
+                if (actual == start) {
+                    start = start.obtenerSig(); // 'start' salta al segundo nodo
+                    if (start == null) { 
+                        end = null; // Si era el único nodo, la lista queda vacía
+                    }
+                } 
+                // CASO B: El libro está en el MEDIO o al FINAL
+                else {
+                    anterior.asignarSiguiente(actual.obtenerSig()); // 'anterior' se salta a 'actual'
+                    
+                    // Si eliminamos el último nodo, actualizamos 'end'
+                    if (actual == end) {
+                        end = anterior;
+                    }
+                }
+
+                return true; // Libro encontrado y eliminado con éxito 🎯
+            }
+
+            // Avanzamos los dos punteros un paso hacia adelante 🚶‍♂️
+            anterior = actual;
+            actual = actual.obtenerSig();
+        }
+        return false;
+    }
 }
