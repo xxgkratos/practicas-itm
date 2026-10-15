@@ -31,7 +31,6 @@ public class Libros {
 
 
     public Libros(Object obtenerDato) {
-        //TODO Auto-generated constructor stub
     }
 
     public void mostrarInformacion(){

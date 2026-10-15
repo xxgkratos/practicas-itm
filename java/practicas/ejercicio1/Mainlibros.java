@@ -85,7 +85,6 @@ public class Mainlibros {
                             
                             continue;
                         case 2: 
-                            // Implementar lógica para consultar editorial
                             System.out.println("Ingrese el código de la editorial que desea consultar: ");
                             int codigoEditorial = sc.nextInt();
                             ArchivoEditorial archivoEditorialConsulta = new ArchivoEditorial();
@@ -105,7 +104,6 @@ public class Mainlibros {
                             }else{
                                 System.out.println("El codigo de la editorial no se pudo eliminar, vuelva a intertarlo. ");
                             }
-
                             continue;
                         case 5:
                             CrudEditorial crudEditorial2 = new CrudEditorial();
@@ -195,21 +193,18 @@ class ManejoEditorial {
         if (opcion == 1) {
             System.out.println("Ingrese el nuevo código de editorial: ");
             int nuevoCodigo = manjErrores.leerEntero();
-            // LLAMADA RECURSIVA con el nuevo código
             return manejoEditorial(nuevoCodigo); 
             
         } else if (opcion == 2) {
-            // Creamos y guardamos la nueva editorial
+
             LeerEditorial leerEditorial = new LeerEditorial();
             Editorial nuevaEditorial = leerEditorial.pedirEditorial();
             
             archivoEditorial.guardarEnCSV(nuevaEditorial);
             
-            // LLAMADA RECURSIVA con el código de la editorial recién creada
             return manejoEditorial(nuevaEditorial.getCodigoEditorial());
         }
 
-        // Si ingresa una opción inválida, reintentamos con el mismo código
         System.out.println("Opción inválida, intente de nuevo.");
         return manejoEditorial(codigoEditorial);
     }

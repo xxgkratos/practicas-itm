@@ -59,7 +59,7 @@ public class CrudLibros {
         
         archivo.cerrarModoLectura();
 
-        // La lista se encarga de imprimir todos sus nodos
+        
         System.out.println("\n--- LISTA DE LIBROS REGISTRADOS ---");
         lista.listarNodos(); 
     }

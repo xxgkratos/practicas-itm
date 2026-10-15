@@ -11,14 +11,14 @@ public class ManejoListas {
     }
 
     public void insertarNodoPorFinal(Object info) {
-        Nodo nuevo = new Nodo(info); // 1. Creamos el nodo nuevo
+        Nodo nuevo = new Nodo(info); 
         
         if (isEmpty()) {
-            start = nuevo; // Si está vacía, start y end apuntan al nuevo nodo
+            start = nuevo; 
             end = nuevo;
         } else {
-            end.asignarSiguiente(nuevo); // 2. El último nodo actual apunta al nuevo como SIGUIENTE
-            end = nuevo;                 // 3. El nuevo pasa a ser el nuevo 'end'
+            end.asignarSiguiente(nuevo); 
+            end = nuevo;                 
         }
     }
 
@@ -71,44 +71,39 @@ public class ManejoListas {
 
     public boolean eliminarLibroTitulo(String nombreLibro) {
     if (isEmpty()) {
-        return false; // Si está vacía, no hay nada que eliminar 📭
+        return false; 
     }
 
     Nodo actual = start;
     Nodo anterior = null;
 
     while (actual != null) {
-        Libros libro = (Libros) actual.obtenerDato(); // Casteo desde Object
+        Libros libro = (Libros) actual.obtenerDato(); 
 
-        // Comparamos los títulos sin importar mayúsculas/minúsculas
         if (libro.getTitulo().equalsIgnoreCase(nombreLibro)) {
             
-            // CASO A: El libro a eliminar es el PRIMERO de la lista
             if (actual == start) {
-                start = start.obtenerSig(); // 'start' salta al segundo nodo
+                start = start.obtenerSig(); 
                 if (start == null) { 
-                    end = null; // Si era el único nodo, la lista queda vacía
+                    end = null; 
                 }
             } 
-            // CASO B: El libro está en el MEDIO o al FINAL
             else {
-                anterior.asignarSiguiente(actual.obtenerSig()); // 'anterior' se salta a 'actual'
-                
-                // Si eliminamos el último nodo, actualizamos 'end'
+                anterior.asignarSiguiente(actual.obtenerSig()); 
+
                 if (actual == end) {
                     end = anterior;
                 }
             }
 
-            return true; // Libro encontrado y eliminado con éxito 🎯
+            return true; 
         }
 
-        // Avanzamos los dos punteros un paso hacia adelante 🚶‍♂️
         anterior = actual;
         actual = actual.obtenerSig();
     }
 
-    return false; // No se encontró el libro en la lista
+    return false; 
     }
 
 
@@ -125,27 +120,24 @@ public class ManejoListas {
         
             if (editorial.getCodigoEditorial() == codigoEliminarEditorial) {
                 
-                // CASO A: El libro a eliminar es el PRIMERO de la lista
                 if (actual == start) {
-                    start = start.obtenerSig(); // 'start' salta al segundo nodo
+                    start = start.obtenerSig(); 
                     if (start == null) { 
-                        end = null; // Si era el único nodo, la lista queda vacía
+                        end = null; 
                     }
                 } 
-                // CASO B: El libro está en el MEDIO o al FINAL
+
                 else {
-                    anterior.asignarSiguiente(actual.obtenerSig()); // 'anterior' se salta a 'actual'
-                    
-                    // Si eliminamos el último nodo, actualizamos 'end'
+                    anterior.asignarSiguiente(actual.obtenerSig()); 
+                
                     if (actual == end) {
                         end = anterior;
                     }
                 }
 
-                return true; // Libro encontrado y eliminado con éxito 🎯
+                return true; 
             }
 
-            // Avanzamos los dos punteros un paso hacia adelante 🚶‍♂️
             anterior = actual;
             actual = actual.obtenerSig();
         }
