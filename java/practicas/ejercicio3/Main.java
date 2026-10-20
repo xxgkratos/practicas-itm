@@ -7,15 +7,12 @@ public class Main {
         Pila miPila = new Pila();
         ManejoPila manejo = new ManejoPila();
 
-        // Metiendo strings
         miPila.push("Hola mundo");
         miPila.push("Estructuras de datos");
 
-        // Metiendo números (Java los convierte automáticamente a objetos Integer gracias al Autoboxing)
         miPila.push(100);
         miPila.push(3.1416);
 
-        // Imprimir todo limpio
         manejo.imprimir(miPila);
         String buscado =  "Hola mundo";
 

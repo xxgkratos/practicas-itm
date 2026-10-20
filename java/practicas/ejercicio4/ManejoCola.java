@@ -10,14 +10,12 @@ public class ManejoCola {
         Cola aux = new Cola();
         System.out.println("\n--- ELEMENTOS DE LA COLA ---");
 
-        // Recorremos la cola sacando del frente
         while (!colaPersonas.isEmpty()) {
             Object dato = colaPersonas.pop();
             System.out.println(dato);
             aux.push(dato);
         }
 
-        // Restauramos la cola original
         restaurar(colaPersonas, aux);
     }
 

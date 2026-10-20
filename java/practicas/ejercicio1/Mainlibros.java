@@ -12,7 +12,6 @@ public class Mainlibros {
             int opcion = manjErrores.leerEntero();
             switch(opcion){
                 case 1:
-                    // Implementar lógica para opciones de libros
                     System.out.println("\nOpciones de libros seleccionadas.");
                     System.out.println("1. Ingresar libro. ");
                     System.out.println("2. Buscar libro. ");
@@ -66,7 +65,6 @@ public class Mainlibros {
                         }
 
                 case 2:
-                    // Implementar lógica para opciones de editoriales
                     System.out.println("\nOpciones de editoriales seleccionadas.");
                     System.out.println("1. Ingresar Editorial. ");
                     System.out.println("2. Buscar Editorial. ");

@@ -29,7 +29,7 @@ public class ManejoListas {
         } else {
             Nodo q = start;
             start = new Nodo(info);
-            start.asignarAnt(q);
+            start.asignarSiguiente(q);
         }
     }
 
@@ -45,7 +45,7 @@ public class ManejoListas {
             Nodo actual = start;
             while (actual != null){
                 System.out.println(actual.obtenerDato());
-                actual = actual.obtenerSig();
+                actual = actual.obtenerSiguiente();
             }
         }
     }  
@@ -53,19 +53,19 @@ public class ManejoListas {
     public void eliminarEnd(){
     Nodo actual = start;
     Nodo aux;
-    while(actual.obtenerSig() != null){
-        aux = actual.obtenerSig();
-        if(aux.obtenerSig() == null){
+    while(actual.obtenerSiguiente() != null){
+        aux = actual.obtenerSiguiente();
+        if(aux.obtenerSiguiente() == null){
             end = actual;
-            end.asignarAnt(null);
+            end.asignarSiguiente(null);
             break;
         }
-        actual = actual.obtenerSig();
+        actual = actual.obtenerSiguiente();
         }
     }       
 
     public void eliminarStart(){
-        start = start.obtenerSig();
+        start = start.obtenerSiguiente();
     }
 
 
@@ -83,13 +83,13 @@ public class ManejoListas {
         if (libro.getTitulo().equalsIgnoreCase(nombreLibro)) {
             
             if (actual == start) {
-                start = start.obtenerSig(); 
+                start = start.obtenerSiguiente(); 
                 if (start == null) { 
                     end = null; 
                 }
             } 
             else {
-                anterior.asignarSiguiente(actual.obtenerSig()); 
+                anterior.asignarSiguiente(actual.obtenerSiguiente()); 
 
                 if (actual == end) {
                     end = anterior;
@@ -100,7 +100,7 @@ public class ManejoListas {
         }
 
         anterior = actual;
-        actual = actual.obtenerSig();
+        actual = actual.obtenerSiguiente();
     }
 
     return false; 
@@ -121,14 +121,14 @@ public class ManejoListas {
             if (editorial.getCodigoEditorial() == codigoEliminarEditorial) {
                 
                 if (actual == start) {
-                    start = start.obtenerSig(); 
+                    start = start.obtenerSiguiente(); 
                     if (start == null) { 
                         end = null; 
                     }
                 } 
 
                 else {
-                    anterior.asignarSiguiente(actual.obtenerSig()); 
+                    anterior.asignarSiguiente(actual.obtenerSiguiente()); 
                 
                     if (actual == end) {
                         end = anterior;
@@ -139,7 +139,7 @@ public class ManejoListas {
             }
 
             anterior = actual;
-            actual = actual.obtenerSig();
+            actual = actual.obtenerSiguiente();
         }
         return false;
     }

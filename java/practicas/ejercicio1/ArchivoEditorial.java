@@ -7,26 +7,24 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class ArchivoEditorial {
-    File archivo;//archivo logico
-    FileReader lectura;//objeto para modo lectura del archivo
-    BufferedReader buffer;//objeto que reserva un espacio en memoria donde se guarda la informacion
+    File archivo;
+    FileReader lectura;
+    BufferedReader buffer;
     BufferedWriter bufferW;
     BufferedReader bufferNEW;
-    FileWriter escritura;//objeto para modo escritura del archivo
-    PrintWriter impresion;//objeto para grabar directamente en el texto
+    FileWriter escritura;
+    PrintWriter impresion;
 
     String ruta = "editorial.csv";
 
 
-    // Método que recibe el objeto libro y lo guarda en el CSV
     public void guardarEnCSV(Editorial editorial) {
         String guardarlibro = editorial.toString();
-        // El 'true' dentro de FileWriter permite añadir líneas al final (append)
         try (FileWriter fw = new FileWriter(ruta, true);
             PrintWriter pw = new PrintWriter(fw)) {
 
-            pw.println(guardarlibro); // Escribe la línea en el archivo
-            System.out.println("Editorial guardada exitosamente en editorial.csv 💾");
+            pw.println(guardarlibro); 
+            System.out.println("Editorial guardada exitosamente en editorial.csv ");
 
         } catch (IOException e) {
             System.out.println("Error al guardar en el archivo: " + e.getMessage());
@@ -88,7 +86,6 @@ public class ArchivoEditorial {
         try
         {
         lectura.close();
-        // buffer.close();
         }
         catch(Exception objException)
         {
@@ -175,7 +172,7 @@ public class ArchivoEditorial {
                 while(actual != null){
                     Editorial editorialGuardar = (Editorial)  actual.obtenerDato();
                     bw.println(editorialGuardar.toString());
-                    actual = actual.obtenerSig();
+                    actual = actual.obtenerSiguiente();
                 }
             return true;
         }

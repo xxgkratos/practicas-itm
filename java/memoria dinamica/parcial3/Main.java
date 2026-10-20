@@ -21,16 +21,16 @@ public class Main {
 
             switch (op) {
                 case 1:
-                    System.out.print("Ingrese el ID del Ticket: ");
+                    System.out.println("Ingrese el ID del Ticket: ");
                     int idTicket = sc.nextInt();
                     
-                    System.out.print("Ingrese el Código de Incidencia: ");
+                    System.out.println("Ingrese el Código de Incidencia: ");
                     int codIncidencia = sc.nextInt();
                     sc.nextLine(); 
                 
                     String estado = "espera";
                     
-                    System.out.print("Ingrese la Fecha de Reporte. ");
+                    System.out.println("Ingrese la Fecha de Reporte. ");
                     int fechReporte = sc.nextInt();
 
                     Ticket nuevoTicket = new Ticket(idTicket, codIncidencia, estado, fechReporte);

@@ -2,7 +2,7 @@ public class Persona {
     private String id;
     private String tipoDoc;
     private String nombre;
-    private Ticket ticketServicio; // Objeto Ticket asignado a la persona
+    private Ticket ticketServicio; 
 
     public Persona(String id, String tipoDoc, String nombre, Ticket ticketServicio) {
         this.id = id;

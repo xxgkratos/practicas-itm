@@ -7,25 +7,23 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class ArchivoLibros {
-    File archivo;//archivo logico
-    FileReader lectura;//objeto para modo lectura del archivo
-    BufferedReader buffer;//objeto que reserva un espacio en memoria donde se guarda la informacion
+    File archivo;
+    FileReader lectura;
+    BufferedReader buffer;
     BufferedWriter bufferW;
     BufferedReader bufferNEW;
-    FileWriter escritura;//objeto para modo escritura del archivo
-    PrintWriter impresion;//objeto para grabar directamente en el texto
+    FileWriter escritura;
+    PrintWriter impresion;
 
     public String ruta = "libros.csv";
 
-    // Método que recibe el objeto libro y lo guarda en el CSV
     public void guardarEnCSV(Libros libro) {
         String guardarlibro = libro.toString();
 
-        // El 'true' dentro de FileWriter permite añadir líneas al final (append)
         try (FileWriter fw = new FileWriter(this.ruta, true);
             PrintWriter pw = new PrintWriter(fw)) {
 
-            pw.println(guardarlibro); // Escribe la línea en el archivo
+            pw.println(guardarlibro); 
             System.out.println("Libro guardado exitosamente en libros.csv ");
 
         } catch (IOException e) {
@@ -33,16 +31,15 @@ public class ArchivoLibros {
         }
     }
     public void reescribirCSVDesdeLista(ManejoListas lista) {
-    // Pasar 'false' hace que el archivo se limpie/sobrescriba por completo
     try(FileWriter fw = new FileWriter(this.ruta, false); 
         PrintWriter pw = new PrintWriter(fw)) {
 
-        Nodo actual = lista.getStart(); // Necesitamos acceder al inicio de la lista
+        Nodo actual = lista.getStart(); 
         
         while (actual != null) {
             Libros libro = (Libros) actual.obtenerDato();
-            pw.println(libro.toString()); // Escribe la línea formato CSV
-            actual = actual.obtenerSig();
+            pw.println(libro.toString()); 
+            actual = actual.obtenerSiguiente();
         }
         
     } catch (IOException e) {
@@ -50,7 +47,7 @@ public class ArchivoLibros {
     }
     }
 
-    public boolean existeLibro(int codigo){ //tiene que devolver un booleando
+    public boolean existeLibro(int codigo){ 
         try{
             return new CrudLibros().LeerLibroCodigo(codigo);
         }catch(Exception e){
@@ -59,7 +56,7 @@ public class ArchivoLibros {
         }
     }
 
-    public Libros existeLibroTitulo(String nombreLibro){//tiene que devolver un objeto
+    public Libros existeLibroTitulo(String nombreLibro){
         ArchivoLibros archivo = new ArchivoLibros();
         int tamano = archivo.contadorLineas(ruta);
         try{
@@ -101,7 +98,6 @@ public class ArchivoLibros {
         try
         {
         lectura.close();
-        // buffer.close();
         }
         catch(Exception objException)
         {

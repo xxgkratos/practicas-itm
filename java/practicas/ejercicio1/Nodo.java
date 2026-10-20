@@ -35,7 +35,7 @@ public class Nodo {
         return antNodo;
     }
 
-    public void asignarAnt(Nodo antNodo) {
+    public void asignarAnterior(Nodo antNodo) {
         this.antNodo = antNodo;
     }
 
