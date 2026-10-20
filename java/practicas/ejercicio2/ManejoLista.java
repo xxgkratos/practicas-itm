@@ -39,7 +39,7 @@ public class ManejoLista {
             Nodo actual =  start;
 
             while(actual!= null){
-                System.out.println(actual.getDato());
+                System.out.println(actual.obtenerDato());
 
                 actual  = actual.obtenerSiguiente();
             }

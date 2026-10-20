@@ -25,7 +25,7 @@ public class Nodo {
     }
 
 
-    public Object getDato(){
+    public Object obtenerDato(){
         return this.dato;
     }
 
